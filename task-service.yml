@@ -6,8 +6,8 @@ spring:
     name: task-service
   datasource:
     url: jdbc:postgresql://postgres:5432/task_service
-    username: postgres
-    password: postgres
+    username: taskflow_user
+    password: taskflow_pass
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
