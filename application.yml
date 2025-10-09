@@ -1,0 +1,45 @@
+spring:
+  config:
+    import-check.enabled: false
+  cloud:
+    config:
+      server:
+        git:
+          uri: ./
+          search-paths: .
+      discovery:
+        enabled: true
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - PATCH
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+            maxAge: 3600
+      routes:
+        - id: auth-login
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/login
+          filters:
+            - RemoveRequestHeader=Authorization
+        - id: auth-register
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/register
+          filters:
+            - RemoveRequestHeader=Authorization
+        - id: auth-refresh
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/refresh-token
+          filters:
+            - RemoveRequestHeader=Authorization

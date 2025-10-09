@@ -1,0 +1,34 @@
+server:
+  port: 8084
+
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - PATCH
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+            maxAge: 3600
+
+# JWT configuration
+jwt:
+  secret: ${JWT_SECRET:defaultBase64Secret}
+  accessExpiration: 3600000
+  refreshExpiration: 86400000
+  serviceExpiration: 7200000
+
+# Logging configuration (optional overrides)
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web.reactive: DEBUG
+    com.venky.api_gateway: DEBUG
