@@ -53,6 +53,7 @@ eureka:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
 
+# JWT configuration
 jwt:
   secret: ${JWT_SECRET:defaultBase64Secret}
   accessExpiration: 3600000
