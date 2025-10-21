@@ -25,7 +25,16 @@ jwt:
   accessExpiration: 3600000
   refreshExpiration: 86400000
   serviceExpiration: 7200000
-
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+      
 # Logging configuration (optional overrides)
 logging:
   level:
